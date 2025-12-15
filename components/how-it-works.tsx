@@ -1,54 +1,22 @@
 "use client"
 
-import { Cable, GitBranch, Rocket } from "lucide-react"
-import { motion } from "framer-motion"
-import { useInView } from "framer-motion"
+import { Section } from "@/components/layout/section"
+import { SectionHeading } from "@/components/layout/section-heading"
+import { howItWorksSteps } from "@/lib/content"
+import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 
 export function HowItWorks() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
-  const steps = [
-    {
-      icon: Cable,
-      title: "Connect your systems",
-      description: "We securely ingest code and metadata from your existing repositories and platforms",
-      hasConnector: true,
-    },
-    {
-      icon: GitBranch,
-      title: "Extract the real process",
-      description:
-        "Our engine analyzes control flow, data paths, and integrations to build an accurate BPMN-style model",
-      hasConnector: true,
-    },
-    {
-      icon: Rocket,
-      title: "Optimize & modernize",
-      description:
-        "Teams use the live model to remove unnecessary steps, plan modernization, and design new systems with confidence",
-      hasConnector: false,
-    },
-  ]
-
   return (
-    <section ref={ref} id="how-it-works" className="border-b border-border/40 bg-muted/30 py-20 md:py-24">
-      <div className="container max-w-screen-xl px-4 md:px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6 }}
-          className="mx-auto max-w-3xl text-center"
-        >
-          <h2 className="mb-4 text-balance text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-            How it works
-          </h2>
-          <p className="mb-12 text-pretty text-lg text-muted-foreground">Three steps to clarity</p>
-        </motion.div>
+    <Section id="how-it-works" muted>
+      <div ref={ref}>
+        <SectionHeading title="How it works" description="Three steps to clarity" />
 
-        <div className="mx-auto grid max-w-5xl gap-8 md:grid-cols-3">
-          {steps.map((step, i) => (
+        <div className="mx-auto grid max-w-5xl gap-8 pt-12 md:grid-cols-3">
+          {howItWorksSteps.map((step, i) => (
             <motion.div
               key={step.title}
               initial={{ opacity: 0, x: -30 }}
@@ -77,6 +45,6 @@ export function HowItWorks() {
           ))}
         </div>
       </div>
-    </section>
+    </Section>
   )
 }

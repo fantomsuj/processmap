@@ -10,21 +10,11 @@
 This repository will stay in sync with your deployed chats on [v0.app](https://v0.app).
 Any changes you make to your deployed app will be automatically pushed to this repository from [v0.app](https://v0.app).
 
-## Deployment
+## GitHub Pages deployment
 
-Your project is live at:
+This project exports as a static site so it can run on GitHub Pages.
 
-**[https://vercel.com/sujay-kolpurus-projects/v0-landing-page-draft](https://vercel.com/sujay-kolpurus-projects/v0-landing-page-draft)**
-
-## Build your app
-
-Continue building your app on:
-
-**[https://v0.app/chat/jup7c0CpfuR](https://v0.app/chat/jup7c0CpfuR)**
-
-## How It Works
-
-1. Create and modify your project using [v0.app](https://v0.app)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+- Install deps and build: `pnpm install && pnpm run build` (outputs to `out/` with `.nojekyll` and `index.html`).
+- For project pages (e.g. `https://username.github.io/processmap`), set `NEXT_PUBLIC_BASE_PATH=/processmap` in your build environment so assets load from the right path. Leave it empty for custom domains or user/org pages.
+- `public/CNAME` is included so `wevyn.com` is preserved when publishing the `out/` folder.
+- Deploy the `out/` directory to your `gh-pages` branch (e.g. with `actions/upload-pages-artifact` + `actions/deploy-pages` or `peaceiris/gh-pages`). Make sure the entry file (`index.html`) sits at the root of the published artifact.
